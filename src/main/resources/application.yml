@@ -3,9 +3,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:mysql://kaifa.innotree.local:3306/innotree_data_project
+    url: jdbc:mysql://127.0.0.1:3306/innotree_data_project
     username: liuchaoyang
-    password: KL8o2YGT6b9Zj67Q
+    password:
 
 mybatis:
   mapper-locations: classpath:mybatis/*.xml

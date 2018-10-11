@@ -6,3 +6,5 @@ CREATE TABLE t_user(
   password VARCHAR(255) NOT NULL ,
   mobile VARCHAR(255) NOT NULL
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+insert into t_user values(1, 'liu', '999', '13691156267');

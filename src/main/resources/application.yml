@@ -2,15 +2,23 @@ server:
   port: 8080
 
 spring:
+  profiles:
+    active: dev
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/innotree_data_project
-    username: liuchaoyang
+    url: jdbc:mysql://127.0.0.1:3306/test
+    username:
     password:
   redis:
     host: 127.0.0.1
     port: 6379
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
+
+# 打印sql
+#logging:
+#  level:
+#     com.example.sbdemo.user.mapper : debug
+
 ---
 spring:
   profiles: dev

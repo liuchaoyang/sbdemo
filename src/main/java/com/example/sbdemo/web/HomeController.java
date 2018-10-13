@@ -40,14 +40,8 @@ public class HomeController {
 
     @RequestMapping("/test/log")
     public Object testLog() throws IOException, APIBaseException {
-        LOGGER.error("-------error");
-        LOGGER.warn("-------warn");
-        LOGGER.info("-------info");
-        LOGGER.debug("-------debug");
-        LOGGER.trace("-------trace");
-
         User user = userService.findByMobile("13691156267");
+        System.out.println("-----user:" + user);
         return ResultJson.success(user);
-
     }
 }

@@ -7,4 +7,4 @@ CREATE TABLE t_user(
   mobile VARCHAR(255) NOT NULL
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
 
-insert into t_user values(1, 'liu', '999', '13691156267');
+insert into t_user values(5, 'qian', '555', '13691156270');

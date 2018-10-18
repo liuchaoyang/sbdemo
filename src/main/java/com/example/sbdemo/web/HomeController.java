@@ -4,6 +4,7 @@ import com.example.sbdemo.common.ResultJson;
 import com.example.sbdemo.exception.APIBaseException;
 import com.example.sbdemo.user.entity.User;
 import com.example.sbdemo.user.service.UserService;
+import com.example.sbdemo.util.EnvUtils;
 import com.example.sbdemo.util.ExportExcel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +23,8 @@ public class HomeController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private EnvUtils envUtils;
 
     @RequestMapping("/index")
     public String index() {
@@ -41,7 +44,11 @@ public class HomeController {
     @RequestMapping("/test/log")
     public Object testLog() throws IOException, APIBaseException {
         User user = userService.findByMobile("13691156267");
-        System.out.println("-----user:" + user);
         return ResultJson.success(user);
+    }
+
+    @RequestMapping("/test/active_profile")
+    public Object activeProfile() throws IOException, APIBaseException {
+        return ResultJson.success(envUtils.activeEnv());
     }
 }

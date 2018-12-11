@@ -9,9 +9,7 @@ import com.example.sbdemo.util.ExportExcel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,4 +49,21 @@ public class HomeController {
     public Object activeProfile() throws IOException, APIBaseException {
         return ResultJson.success(envUtils.activeEnv());
     }
+
+    @PostMapping("/test/post")
+    public Object post(@RequestParam String orderIds,
+                       @RequestParam int type) {
+        System.out.println(orderIds);
+        return ResultJson.success();
+    }
+
+
+    @GetMapping("/test/301")
+    public Object test301(HttpServletResponse response) throws IOException {
+        response.sendRedirect("http://www.baidu.com");
+
+        return ResultJson.success();
+    }
+
+
 }

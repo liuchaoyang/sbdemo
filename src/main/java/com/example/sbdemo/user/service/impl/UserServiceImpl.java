@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserMapper userMapper;
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private RedisTemplate<Object, Object> redisTemplate;
 
     @Override
     public User findByMobile(String mobile) throws APIBaseException {
@@ -26,14 +26,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void saveUserToken(String token) {
+    public void saveUserToken() {
         String key = "sanxi-user-token-13691156267";
 
-        Boolean setIfAbsent = redisTemplate.boundValueOps(key).setIfAbsent(token);
+        User user = new User();
+        user.setMobile("13691156267");
+        user.setUserId(8888888);
+        Boolean setIfAbsent = redisTemplate.boundValueOps(key).setIfAbsent(user);
         System.out.println(setIfAbsent);
 
         Boolean hasKey = redisTemplate.hasKey(key);
-        System.out.println(hasKey);
+        User redisUser = (User) redisTemplate.boundValueOps(key).get();
+        System.out.println(redisUser);
 
         redisTemplate.delete(key);
         hasKey = redisTemplate.hasKey(key);

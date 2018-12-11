@@ -12,6 +12,11 @@ public class ResultJson<T> {
         this.message = message;
     }
 
+    public static ResultJson success() {
+        ResultJson result = new ResultJson(200, "ok");
+        return result;
+    }
+
     public static ResultJson success(Object data) {
         ResultJson result = new ResultJson(200, "ok");
         result.setData(data);

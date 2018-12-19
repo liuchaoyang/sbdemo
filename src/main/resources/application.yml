@@ -9,8 +9,13 @@ spring:
     username: root
     password: hcIWtm^}$#=eZ|u
   redis:
-    host: 127.0.0.1
+    host: localhost
     port: 6379
+    # 配置cluster后，会覆盖单机配置
+#    cluster:
+#      nodes:
+#      max-redirects: 3
+
 mybatis:
   mapper-locations: classpath:mybatis/*.xml
   configuration:

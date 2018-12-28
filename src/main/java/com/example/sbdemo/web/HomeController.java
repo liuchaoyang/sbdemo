@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 
 @RestController
 public class HomeController {
@@ -61,6 +62,13 @@ public class HomeController {
     @GetMapping("/test/301")
     public Object test301(HttpServletResponse response) throws IOException {
         response.sendRedirect("http://www.baidu.com");
+
+        return ResultJson.success();
+    }
+
+    @GetMapping("/test/date")
+    public Object tesDate(@RequestParam Date date) throws IOException {
+        System.out.println(date);
 
         return ResultJson.success();
     }

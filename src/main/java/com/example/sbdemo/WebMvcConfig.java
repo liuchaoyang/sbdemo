@@ -1,6 +1,6 @@
 package com.example.sbdemo;
 
-import com.example.sbdemo.converter.StringToDateConverter;
+import com.example.sbdemo.converter.StringDateConverter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -15,7 +15,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToDateConverter());
+        registry.addConverter(new StringDateConverter());
 
     }
 

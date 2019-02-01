@@ -40,11 +40,13 @@ public class MessageConsumer {
 
         while (true) {
             executorService.execute(runnable);
+            executorService.submit(runnable); //能获取future？
             try {
                 Thread.sleep(3000L);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            break;
         }
     }
 }

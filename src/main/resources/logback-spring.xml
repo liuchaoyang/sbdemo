@@ -1,6 +1,6 @@
 <configuration>
 
-    <property name="logDir" value="/data1/logs/innotree-sanxi"/>
+    <property name="logDir" value="logs/"/>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder> 3 <pattern>
@@ -11,7 +11,7 @@
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>demo.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${logDir}demo.%d{yyyy-MM-dd}.log</fileNamePattern>
             <MaxHistory>90</MaxHistory>
         </rollingPolicy>
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
@@ -27,7 +27,7 @@
     <!--sql的打印【logging.level.org.mybatis=debug logging.level.dao=debug】-->
 
     <springProfile name="dev">
-        <root level="DEBUG">
+        <root level="INFO">
             <appender-ref ref="STDOUT"/>
         </root>
     </springProfile>

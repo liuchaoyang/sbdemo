@@ -6,7 +6,10 @@ public interface inface {
         System.out.println("default...");
     }
 
+    static void m() {
+        System.out.println("m...");
+    }
     String inDomain = "www.baidu.com";
 
-    void getUrl();
+    public abstract void getUrl();
 }

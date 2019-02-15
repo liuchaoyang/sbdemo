@@ -1,5 +1,6 @@
 package com.example.sbdemo.base;
 
+import com.example.sbdemo.model.Apple;
 import com.example.sbdemo.model.Fruit;
 
 public class TestExtend {
@@ -17,7 +18,7 @@ public class TestExtend {
 //        Apple fruit3 = new Apple();
 //        fruit3.grow();
         Fruit fruit4 = new Fruit();
-        Fruit fruit5 = new Fruit();
+        Apple fruit5 = new Apple();
 
 
     }

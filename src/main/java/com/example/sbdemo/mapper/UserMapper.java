@@ -1,6 +1,6 @@
-package com.example.sbdemo.user.mapper;
+package com.example.sbdemo.mapper;
 
-import com.example.sbdemo.user.entity.User;
+import com.example.sbdemo.model.User;
 
 public interface UserMapper {
 

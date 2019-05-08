@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.example.sbdemo.user.mapper.UserMapper">
-    <resultMap id="userMap" type="com.example.sbdemo.user.entity.User">
+<mapper namespace="com.example.sbdemo.mapper.UserMapper">
+    <resultMap id="userMap" type="com.example.sbdemo.model.User">
         <id column="user_id" property="userId"/>
         <result column="user_name" property="userName"/>
         <result column="password" property="password"/>
         <result column="mobile" property="mobile"/>
+        <result column="school" property="school" typeHandler="com.example.sbdemo.enums.handler.JSONTypeHandler"/>
     </resultMap>
 
-    <insert id="insert" parameterType="com.example.sbdemo.user.entity.User">
-        INSERT INTO t_user(user_name, password, mobile)
-        VALUES(#{userName}, #{password}, #{mobile})
+    <insert id="insert" parameterType="com.example.sbdemo.model.User">
+        INSERT INTO t_user(user_name, password, mobile, school)
+        VALUES(#{userName}, #{password}, #{mobile},
+        #{school, typeHandler=com.example.sbdemo.enums.handler.JSONTypeHandler})
     </insert>
     <select id="find" resultMap="userMap">
         SELECT * FROM t_user WHERE mobile = #{mobile}

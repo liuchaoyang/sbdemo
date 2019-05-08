@@ -1,7 +1,7 @@
 package com.example.sbdemo.thread;
 
-import com.example.sbdemo.user.entity.User;
-import com.example.sbdemo.user.mapper.UserMapper;
+import com.example.sbdemo.model.User;
+import com.example.sbdemo.mapper.UserMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

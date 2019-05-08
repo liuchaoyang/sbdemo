@@ -1,4 +1,4 @@
-package com.example.sbdemo.user.entity;
+package com.example.sbdemo.model;
 
 import java.io.Serializable;
 
@@ -9,6 +9,7 @@ public class User implements Serializable {
     private String userName;
     private String password;
     private String mobile;
+    private School school;
 
     public int getUserId() {
         return userId;
@@ -40,6 +41,14 @@ public class User implements Serializable {
 
     public void setMobile(String mobile) {
         this.mobile = mobile;
+    }
+
+    public School getSchool() {
+        return school;
+    }
+
+    public void setSchool(School school) {
+        this.school = school;
     }
 
     @Override

@@ -1,9 +1,9 @@
-package com.example.sbdemo.user.service.impl;
+package com.example.sbdemo.service.impl;
 
 import com.example.sbdemo.exception.APIBaseException;
-import com.example.sbdemo.user.entity.User;
-import com.example.sbdemo.user.mapper.UserMapper;
-import com.example.sbdemo.user.service.UserService;
+import com.example.sbdemo.model.User;
+import com.example.sbdemo.mapper.UserMapper;
+import com.example.sbdemo.service.UserService;
 import com.example.sbdemo.util.MobileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

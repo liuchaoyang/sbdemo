@@ -2,13 +2,14 @@ package com.example.sbdemo.web;
 
 import com.example.sbdemo.common.ResultJson;
 import com.example.sbdemo.exception.APIBaseException;
-import com.example.sbdemo.user.entity.User;
-import com.example.sbdemo.user.service.UserService;
+import com.example.sbdemo.service.UserService;
+import com.example.sbdemo.thread.AsynService;
 import com.example.sbdemo.util.EnvUtils;
 import com.example.sbdemo.util.ExportExcel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,14 +20,23 @@ import java.util.Date;
 @RestController
 public class HomeController {
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
+    private static String[] strs = null;
 
     @Autowired
+    @Qualifier("userServiceImpl2")
     private UserService userService;
     @Autowired
     private EnvUtils envUtils;
+    @Autowired
+    private AsynService asynService;
 
     @RequestMapping("/index")
-    public String index() {
+    public String index() throws InterruptedException {
+        LOGGER.info("controller into..., Current thread:{}", Thread.currentThread().getName());
+        Thread.sleep(3000L);
+        LOGGER.info("controller end..., Current thread:{}", Thread.currentThread().getName());
+
+        userService.saveUserToken();
         return "hello, man!";
     }
 
@@ -38,12 +48,6 @@ public class HomeController {
     @RequestMapping("/user/export")
     public void export(HttpServletResponse response) throws IOException {
         ExportExcel.export(response);
-    }
-
-    @RequestMapping("/test/log")
-    public Object testLog() throws IOException, APIBaseException {
-        User user = userService.findByMobile("13691156267");
-        return ResultJson.success(user);
     }
 
     @RequestMapping("/test/active_profile")
@@ -73,5 +77,11 @@ public class HomeController {
         return ResultJson.success();
     }
 
+    @GetMapping("/test/asyn")
+    public Object asyn() throws IOException, InterruptedException {
+        System.out.println(Thread.currentThread().getName() + "start");
+        asynService.asyn();
+        return ResultJson.success();
+    }
 
 }

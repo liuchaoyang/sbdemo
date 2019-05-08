@@ -14,6 +14,6 @@ public class StartUpApplication implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        consumer.execute();
+//        consumer.execute();
     }
 }

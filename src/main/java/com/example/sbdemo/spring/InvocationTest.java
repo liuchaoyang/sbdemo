@@ -10,12 +10,12 @@ import java.lang.reflect.Proxy;
 public class InvocationTest {
 
     public static void main(String[] args) throws InvocationTargetException, IllegalAccessException {
-        InvocationTest base = new InvocationTest();
-        MyHello myHello = base.new MyHello();
-        ProxyHello proxyHello = base.new ProxyHello(myHello);
+        MyHello myHello = new MyHello();
+        ProxyHello proxyHello = new ProxyHello(myHello);
 
-        Class<?>[] interfaces = myHello.getClass().getInterfaces();
-        IHello proxyInstance = (IHello)Proxy.newProxyInstance(InvocationTest.class.getClassLoader(), interfaces, proxyHello);
+        IHello proxyInstance = (IHello)Proxy.newProxyInstance(InvocationTest.class.getClassLoader(),
+                myHello.getClass().getInterfaces(), proxyHello);
+
         proxyInstance.say();
     }
 
@@ -32,7 +32,7 @@ public class InvocationTest {
         }
     }
 
-    class ProxyHello implements InvocationHandler {
+    static class ProxyHello implements InvocationHandler {
 
         IHello iHello;
         public ProxyHello(IHello myHello) {
@@ -52,7 +52,7 @@ public class InvocationTest {
         void say();
     }
 
-    class MyHello implements IHello {
+    static class MyHello implements IHello {
 
         @Override
         public void say() {

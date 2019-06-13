@@ -9,17 +9,8 @@ import java.util.Date;
 
 public class SerializeTest {
 
-    public static void main(String[] args) throws IOException, ClassNotFoundException {
-        School school = new School("学校", "海淀");
-        System.out.println(school.hashCode());
-
-        Student user = new Student("用户一", 10, new Date(), school);
-        Student copy = (Student) deepCopy(user);
-        School school2 = new School("学校2", "海淀2");
-        copy.setSchool(school2);
-
-        System.out.println(user);
-        System.out.println(copy);
+    public static void main(String[] args) {
+        deserialize();
     }
 
     private static void serialize() {
@@ -67,15 +58,5 @@ public class SerializeTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private static Object deepCopy(Object origin) throws IOException, ClassNotFoundException {
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream(bos);
-        oos.writeObject(origin);
-
-        ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(bos.toByteArray()));
-        Object o = objectInputStream.readObject();
-        return o;
     }
 }

@@ -8,7 +8,7 @@ public class Student implements Serializable {
     private static final long serialVersionUID = -786401198183529466L;
     private String name;
     private int age;
-    private Date birthday;
+    private transient Date birthday;
     private School school;
 
     public Student(String name, int age, Date birthday, School school) {

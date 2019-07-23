@@ -7,17 +7,17 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-@Order(2)
+@Order(1)
 @Component
-public class MyFilter implements Filter {
+public class MyFilter2 implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        System.out.println("myfilter init...");
+        System.out.println("MyFilter2 init...");
     }
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("myfilter doFilter...");
+        System.out.println("MyFilter2 doFilter...");
         HttpServletRequest httpServletRequest = (HttpServletRequest)request;
         if (httpServletRequest.getRequestURI().contains("/301")) {
             response.setCharacterEncoding("utf-8");
@@ -25,11 +25,11 @@ public class MyFilter implements Filter {
             return;
         }
         chain.doFilter(request, response);
-        System.out.println("myfilter doFilter...");
+        System.out.println("MyFilter2 doFilter...");
     }
 
     @Override
     public void destroy() {
-        System.out.println("myfilter destroy...");
+        System.out.println("MyFilter2 destroy...");
     }
 }

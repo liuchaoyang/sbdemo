@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
 
 @RestController
 public class HomeController {
@@ -55,13 +54,6 @@ public class HomeController {
         return ResultJson.success(envUtils.activeEnv());
     }
 
-    @PostMapping("/test/post")
-    public Object post(@RequestParam String orderIds,
-                       @RequestParam int type) {
-        System.out.println(orderIds);
-        return ResultJson.success();
-    }
-
 
     @GetMapping("/test/301")
     public Object test301(HttpServletResponse response) throws IOException {
@@ -70,11 +62,11 @@ public class HomeController {
         return ResultJson.success();
     }
 
-    @GetMapping("/test/date")
-    public Object tesDate(@RequestParam Date date) throws IOException {
-        System.out.println(date);
+    @GetMapping("/test/{str}")
+    public Object testString(@PathVariable String str) {
+        System.out.println(str);
 
-        return ResultJson.success();
+        return ResultJson.success(str);
     }
 
     @GetMapping("/test/asyn")

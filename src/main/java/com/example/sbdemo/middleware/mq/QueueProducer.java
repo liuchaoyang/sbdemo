@@ -4,15 +4,11 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 import javax.jms.*;
 
-public class QueueProducer {
+public class QueueProducer extends ActiveMqUtils {
 
     public static void main(String[] args) throws JMSException {
-        //1.创建连接工厂
-        ConnectionFactory connectionFactory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
         //2.获取连接
-        Connection connection = connectionFactory.createConnection();
-        //3.启动连接
-        connection.start();
+        Connection connection = new QueueProducer().getConnection();
         /*4.获取session  (参数1：是否启动事务,
           参数2：消息确认模式[
           AUTO_ACKNOWLEDGE = 1    自动确认

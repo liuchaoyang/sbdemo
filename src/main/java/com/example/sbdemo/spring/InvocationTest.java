@@ -2,10 +2,7 @@ package com.example.sbdemo.spring;
 
 import com.example.sbdemo.model.User;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
+import java.lang.reflect.*;
 
 public class InvocationTest {
 
@@ -16,7 +13,7 @@ public class InvocationTest {
         IHello proxyInstance = (IHello)Proxy.newProxyInstance(InvocationTest.class.getClassLoader(),
                 myHello.getClass().getInterfaces(), proxyHello);
 
-        proxyInstance.say();
+        proxyInstance.finalJoin();
     }
 
     private static void testInvoke() throws InvocationTargetException, IllegalAccessException {
@@ -50,6 +47,9 @@ public class InvocationTest {
 
     interface IHello {
         void say();
+        void sing();
+        void join();
+        void finalJoin();
     }
 
     static class MyHello implements IHello {
@@ -57,6 +57,23 @@ public class InvocationTest {
         @Override
         public void say() {
             System.out.println("MyHello say....");
+        }
+
+        @Override
+        public void sing() {
+            System.out.println("MyHello sing....");
+        }
+
+        @Override
+        public void join() {
+            say();
+            sing();
+        }
+
+        @Override
+        public final void finalJoin() {
+            say();
+            sing();
         }
     }
 

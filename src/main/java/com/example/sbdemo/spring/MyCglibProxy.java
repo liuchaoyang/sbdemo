@@ -14,7 +14,7 @@ public class MyCglibProxy {
         // 生成 Cglib 代理类
         Engineer engineerProxy = (Engineer) CglibProxy.getProxy(new Engineer());
         // 调用相关方法
-        engineerProxy.eat();
+        engineerProxy.play();
     }
 
     static class Engineer {
@@ -31,6 +31,8 @@ public class MyCglibProxy {
         // private 方法不会被生成的字类覆盖
         private void play() {
             System.out.println("this engineer is playing game");
+            //这里aop将会被触发两次
+            eat();eat();
         }
     }
 

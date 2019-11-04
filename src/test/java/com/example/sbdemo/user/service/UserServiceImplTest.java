@@ -1,5 +1,6 @@
 package com.example.sbdemo.user.service;
 
+import com.example.sbdemo.service.UserService;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;

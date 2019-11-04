@@ -1,6 +1,6 @@
 package com.example.sbdemo.schedule;
 
-import com.example.sbdemo.cache.RedisLock;
+import com.example.sbdemo.middleware.redis.RedisLock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

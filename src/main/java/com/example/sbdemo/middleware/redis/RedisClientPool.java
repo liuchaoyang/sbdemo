@@ -1,4 +1,4 @@
-package com.example.sbdemo.cache;
+package com.example.sbdemo.middleware.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;

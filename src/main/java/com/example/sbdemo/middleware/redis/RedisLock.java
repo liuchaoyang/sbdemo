@@ -1,4 +1,4 @@
-package com.example.sbdemo.cache;
+package com.example.sbdemo.middleware.redis;
 
 import org.apache.commons.lang3.time.FastDateFormat;
 import org.slf4j.Logger;

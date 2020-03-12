@@ -1,8 +1,8 @@
 package com.example.sbdemo.thread;
 
 public class VolatileVisibleTest {
-    int a = 1;
-    int b = 2;
+    volatile int a = 1;
+    volatile int b = 2;
 
     public void change(){
         a = 3;
@@ -11,7 +11,7 @@ public class VolatileVisibleTest {
 
     public void print(){
 //        if (a==1 && b == 3) {
-//            //线程切换回导致这种情况，无法避免
+//            //线程切换回导致执行，无法避免
 //            System.out.println("a="+a+";b="+b);
 //        }
         if (b == 3 && a==1) {

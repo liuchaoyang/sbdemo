@@ -23,22 +23,26 @@ public class NettyClient {
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             socketChannel.pipeline()
                                     .addLast(new ChannelInboundHandlerAdapter() {
-                                        private final ByteBuf message = Unpooled.buffer(256);
+                                        private ByteBuf message = null;
                                         @Override
                                         public void channelActive(ChannelHandlerContext ctx) throws Exception {
-                                            message.writeBytes("hello netty, 我是客户端".getBytes(CharsetUtil.UTF_8));
-                                            ctx.writeAndFlush(message);
+                                            for (int i = 0; i < 100; i++) {
+                                                byte[] req = ("QUERY TIME ORDER-" + i + System.getProperty("line.separator")).getBytes(CharsetUtil.UTF_8);
+                                                message = Unpooled.buffer(req.length);
+                                                message.writeBytes(req);
+                                                ctx.writeAndFlush(message);
+                                            }
                                         }
 
                                         @Override
                                         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
                                             System.out.println(((ByteBuf) msg).toString(CharsetUtil.UTF_8));
-                                            ctx.write(msg);
-                                            try {
-                                                Thread.sleep(1000);
-                                            } catch (InterruptedException e) {
-                                                e.printStackTrace();
-                                            }
+//                                            ctx.write(msg);
+//                                            try {
+//                                                Thread.sleep(1000);
+//                                            } catch (InterruptedException e) {
+//                                                e.printStackTrace();
+//                                            }
                                         }
 
                                         @Override

@@ -33,12 +33,14 @@ public class NettyServer {
 //                                    .addLast("encoder", new HttpResponseEncoder()) //用于编码response
 //                                    .addLast("aggregator", new HttpObjectAggregator(512 * 1024)) //消息聚合器，参数含义是消息合并的数据大小，如此代表聚合的消息内容长度不超过512kb
                                     .addLast(new ChannelInboundHandlerAdapter() {
+                                        private int counter = 0;
                                         @Override
                                         public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 //                                            super.channelRead(ctx, msg);
                                             ByteBuf in = (ByteBuf) msg;
-                                            System.out.println(in.toString(CharsetUtil.UTF_8));
-                                            ctx.write(msg);
+                                            System.out.println(in.toString(CharsetUtil.UTF_8) + ", received counter is " + ++counter);
+//                                            in.toString(CharsetUtil.UTF_8).substring(0, )
+//                                            ctx.write(msg);
                                         }
 
                                         @Override

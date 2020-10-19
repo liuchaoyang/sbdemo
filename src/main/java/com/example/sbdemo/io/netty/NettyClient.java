@@ -7,6 +7,8 @@ import io.netty.channel.*;
 import io.netty.channel.oio.OioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.oio.OioSocketChannel;
+import io.netty.handler.codec.LineBasedFrameDecoder;
+import io.netty.handler.codec.string.StringDecoder;
 import io.netty.util.CharsetUtil;
 
 public class NettyClient {
@@ -22,6 +24,8 @@ public class NettyClient {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             socketChannel.pipeline()
+                                    .addLast(new LineBasedFrameDecoder(1024))
+                                    .addLast(new StringDecoder())
                                     .addLast(new ChannelInboundHandlerAdapter() {
                                         private ByteBuf message = null;
                                         @Override

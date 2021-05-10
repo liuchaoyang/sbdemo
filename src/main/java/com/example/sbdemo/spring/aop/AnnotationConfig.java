@@ -1,16 +1,19 @@
-package com.example.sbdemo.spring.ioc;
+package com.example.sbdemo.spring.aop;
 
 import com.example.sbdemo.service.UserService;
+import com.example.sbdemo.spring.ioc.SimpleServiceImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 @Configuration
+@EnableAspectJAutoProxy
 @Aspect
-public class AnnotationConfigTest {
+public class AnnotationConfig {
 
     @Bean
     public UserService myUserService() {
@@ -20,15 +23,15 @@ public class AnnotationConfigTest {
     @Pointcut("execution(* com.example.sbdemo.spring.ioc.SimpleServiceImpl.findByMobile(..))")
     public void pointCut() {}
 
-    @Before("pointCut()")
+    @Around("pointCut()")
     public void around(ProceedingJoinPoint pjp) {
-        System.out.printf("around ahead.");
+        System.out.println("around ahead.");
         try {
             pjp.proceed();
         } catch (Throwable throwable) {
             throwable.printStackTrace();
         }
-        System.out.printf("around last.");
+        System.out.println("around last.");
 
     }
 

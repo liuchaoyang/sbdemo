@@ -1,5 +1,7 @@
 package com.example.sbdemo.jvm;
 
+import java.lang.ref.Reference;
+import java.lang.ref.ReferenceQueue;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +14,8 @@ public class WeakReferenceTest {
         Demo demo = new Demo(1);
 
         //弱引用
-        WeakReference<Demo> weakReference = new WeakReference<>(new Demo(2));
+        ReferenceQueue<Demo> queue = new ReferenceQueue<>();
+        WeakReference<Demo> weakReference = new WeakReference<>(new Demo(2), queue);
         //主动让出发GC
         System.gc();
         try {
@@ -28,6 +31,7 @@ public class WeakReferenceTest {
         //weakReference.get()获取弱引用指向的对象，如果对象是null，表示被回收
         if (weakReference.get() == null) {
             System.out.println("弱引用指向的Demo对象 已经被回收");
+            Reference<? extends Demo> poll = queue.poll(); //poll为weakReference对象
         }
 
     }

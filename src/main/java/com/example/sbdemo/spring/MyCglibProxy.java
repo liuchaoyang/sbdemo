@@ -18,9 +18,18 @@ public class MyCglibProxy {
     }
 
     static class Engineer {
-        // 可以被代理
+        // 除了private都可以被代理
+        private void eatprivate() {
+            System.out.println("eatprivate工程师正在吃饭");
+        }
         public void eat() {
-            System.out.println("工程师正在吃饭");
+            System.out.println("eatPublic工程师正在吃饭");
+        }
+        protected void eatProtect() {
+            System.out.println("eatProtect工程师正在吃饭");
+        }
+        void eatDefault() {
+            System.out.println("eatDefault工程师正在吃饭");
         }
 
         // final 方法不会被生成的字类覆盖
@@ -31,8 +40,11 @@ public class MyCglibProxy {
         // private 方法不会被生成的字类覆盖
         private void play() {
             System.out.println("this engineer is playing game");
-            //这里aop将会被触发两次
-            eat();eat();
+            //除了private都可以被代理
+            this.eatprivate();
+            this.eat();
+            this.eatProtect();
+            this.eatDefault();
         }
     }
 

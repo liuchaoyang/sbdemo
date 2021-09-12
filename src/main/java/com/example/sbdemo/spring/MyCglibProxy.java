@@ -1,5 +1,6 @@
 package com.example.sbdemo.spring;
 
+import net.sf.cglib.core.DebuggingClassWriter;
 import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
@@ -18,7 +19,7 @@ public class MyCglibProxy {
     }
 
     static class Engineer {
-        // 除了private都可以被代理
+        // 除了private都可以被代理，但是非public方法在不同包下无法访问
         private void eatprivate() {
             System.out.println("eatprivate工程师正在吃饭");
         }
@@ -64,6 +65,9 @@ public class MyCglibProxy {
         }
 
         public static Object getProxy(Object target) {
+            //设置代理类生成目录
+            System.setProperty(DebuggingClassWriter.DEBUG_LOCATION_PROPERTY, "D:\\code\\private\\sbdemo\\src\\main\\java");
+
             Enhancer enhancer = new Enhancer();
             // 设置需要代理的对象
             enhancer.setSuperclass(target.getClass());

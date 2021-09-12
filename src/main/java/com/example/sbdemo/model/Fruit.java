@@ -32,6 +32,12 @@ public class Fruit {
     public void eat() {
         System.out.println("eat fruit...");
     }
+    protected void protectMethod() {
+        System.out.println("protectMethod fruit...");
+    }
+    private void privateMethod() {
+        System.out.println("privateMethod fruit...");
+    }
 
     public String getColor() {
         return color;

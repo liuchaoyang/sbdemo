@@ -8,11 +8,18 @@ public class School implements Serializable{
     private String name;
     private String address;
 
-    School() {}
+    static {
+        System.out.println("school static block.");
+    }
+
+    School() {
+        System.out.println("School no params construct.");
+    }
 
     public School(String name, String address) {
         this.name = name;
         this.address = address;
+        System.out.println("School params construct.");
     }
     public String getName() {
         return name;

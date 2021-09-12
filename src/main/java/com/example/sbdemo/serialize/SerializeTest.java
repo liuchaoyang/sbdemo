@@ -10,6 +10,10 @@ import java.util.Date;
 public class SerializeTest {
 
     public static void main(String[] args) {
+        serialize();
+
+        System.out.println("----------------------------");
+        System.out.println("----------------------------");
         deserialize();
     }
 
@@ -18,6 +22,7 @@ public class SerializeTest {
         System.out.println(school.hashCode());
 
         Student user1 = new Student("用户一", 10, new Date(), school);
+        user1.setSerialSon(new SerialSon());
         Student user2 = new Student("用户二", 20, new Date(), school);
 
 
